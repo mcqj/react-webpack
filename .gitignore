@@ -1,1 +1,5 @@
+# As this is a template, leve out package-lock.json
+package-lock.json
+
 node_modules
+dist

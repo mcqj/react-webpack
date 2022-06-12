@@ -2,18 +2,17 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const outDir = path.resolve(__dirname, 'dist')
+const srcDir = path.resolve(__dirname, 'src')
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
-  devServer: {
-    static: outDir,
-  },
+  entry: `${srcDir}/index.js`,
+
   plugins: [
     new HtmlWebpackPlugin({
       title: 'JMQ Development',
-      template: './src/index.html',
-      favicon: './src/assets/favicon.ico'
+      template: `${srcDir}/index.html`,
+      favicon: `${srcDir}/assets/favicon.ico`,
     }),
   ],
   output: {
@@ -25,17 +24,13 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        include: srcDir,
         use: {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env', '@babel/preset-react']
           }
         }
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
       },
     ],
   },
